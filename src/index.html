@@ -8,7 +8,7 @@
         <title>Jogo da Velha</title>
     </head>
     <body>
-        <section class="players">
+        <section id="start" class="players">
             <div class="intro">
                 <div class="title">
                     <h1>Jogo da Velha</h1>
@@ -27,6 +27,11 @@
                     <button id="playGame" class="btn-send-players">Começar</button>
                 </div>
             </div>
+        </section>
+        <section id="game" style="display: none;">
+            <!-- Conteúdo do jogo -->
+            <h2>Jogo da Velha</h2>
+            <p class="currentPlayer" id="currentPlayer"></p>
         </section>
     </body>
     <script src="script.js"></script>
