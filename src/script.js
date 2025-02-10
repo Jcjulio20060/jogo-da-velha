@@ -75,8 +75,11 @@ function handleClick(cell){
         }
         if(result1 || result2 || result3){
             finalizaGame();
+        } else if (empate()) {
+            mudaJanela(2, 4);
+        } else {
+            trocaPlayer();
         }
-        trocaPlayer();
     }
 }
 
@@ -143,4 +146,15 @@ function restartGame(){
 function mudaJanela(one, two){
     document.getElementById(one).style.display = 'none';
     document.getElementById(two).style.display = 'block';
+}
+
+function empate() {
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            if (gameboard[i][j] === null) {
+                return false; // Ainda há células vazias, não é empate
+            }
+        }
+    }
+    return true; // Todas as células estão preenchidas, é empate
 }
