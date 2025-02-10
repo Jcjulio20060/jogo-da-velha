@@ -8,7 +8,51 @@
         <title>Jogo da Velha</title>
     </head>
     <body>
-        
+        <section class="home-container" id="1">
+            <div class="home">
+                <h1>Jogo da Velha</h1>
+                <form class="players-info">
+                    <label>Jogador 1:</label>
+                    <input type="text" name="player1" id="player1" placeholder="Digite seu nome" required>
+                    <label>Jogador 2:</label>
+                    <input type="text" name="player2" id="player2" placeholder="Digite seu nome" required>
+                    <input type="button" value="Iniciar" onclick="startGame()">
+                </form>
+            </div>
+        </section>
+        <section class="game-container" style="display: none;" id="2">
+            <div class="game">
+                <h1>Jogo da Velha</h1>
+                <h2>Vez de: <span id="currentPlayer"></span></h2>
+                <div class="game-board">
+                    <button class="game-cell" id="cell-0" onclick="handleClick(0)"></button>
+                    <button class="game-cell" id="cell-1" onclick="handleClick(1)"></button>
+                    <button class="game-cell" id="cell-2" onclick="handleClick(2)"></button>
+                    <button class="game-cell" id="cell-3" onclick="handleClick(3)"></button>
+                    <button class="game-cell" id="cell-4" onclick="handleClick(4)"></button>
+                    <button class="game-cell" id="cell-5" onclick="handleClick(5)"></button>
+                    <button class="game-cell" id="cell-6" onclick="handleClick(6)"></button>
+                    <button class="game-cell" id="cell-7" onclick="handleClick(7)"></button>
+                    <button class="game-cell" id="cell-8" onclick="handleClick(8)"></button>
+                </div>
+                <div class="game-info">
+                    <h2>Jogador 1: <span id="player1Name"></span></h2>
+                    <h2>Jogador 2: <span id="player2Name"></span></h2>
+                </div>
+            </div>
+        </section>
+        <section class="winner" style="display: none;" id="3">
+            <div class="winner-info">
+                <h2>Vencedor: <span id="winner"></span></h2>
+                <button onclick="restartGame()">Reiniciar</button>
+            </div>
+        </section>
+        <section class="draw" style="display: none;" id="4">
+            <div class="draw-info">
+                <h2>Empate!</h2>
+                <button onclick="restartGame()">Reiniciar</button>
+            </div>
+        </section>
     </body>
     <script src="script.js"></script>
 </html>
