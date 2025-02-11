@@ -40,6 +40,16 @@ function trocaPosicao() {
         players[1] = atualPlayer;
         currentPlayer = 0;
     }
+    defineCoresPlayers();
+}
+
+function defineCoresPlayers(){
+    let player1 = document.getElementById('player1Name');
+    let player2 = document.getElementById('player2Name');
+    player1.innerHTML = players[0];
+    player1.style.color = 'blue';
+    player2.innerHTML = players[1];
+    player2.style.color = 'red';
 }
 
 // Função para lidar com o clique nas células do tabuleiro
@@ -90,6 +100,7 @@ function handleClick(cell) {
 function trocaPlayer() {
     currentPlayer = currentPlayer === 0 ? 1 : 0;
     document.getElementById('currentPlayer').innerHTML = players[currentPlayer];
+    document.getElementById('currentPlayer').style.color = currentPlayer === 0 ? 'blue' : 'red';
 }
 
 // Função para verificar se há uma linha vencedora
