@@ -8,7 +8,8 @@
         <title>Jogo da Velha</title>
     </head>
     <body>
-        <section class="home-container" id="1">
+        <section class="home-container" 
+        id="1">
             <div class="home">
                 <h1>Jogo da Velha</h1>
                 <form class="players-info">
@@ -16,7 +17,7 @@
                     <input type="text" name="player1" id="player1" placeholder="Digite seu nome" required>
                     <label>Jogador 2:</label>
                     <input type="text" name="player2" id="player2" placeholder="Digite seu nome" required>
-                    <input type="button" value="Iniciar" onclick="startGame()">
+                    <input type="button" value="Iniciar" class="btn-start" onclick="startGame()">
                 </form>
             </div>
         </section>
@@ -44,13 +45,13 @@
         <section class="winner" style="display: none;" id="3">
             <div class="winner-info">
                 <h2>Vencedor: <span id="winner"></span></h2>
-                <button onclick="restartGame()">Reiniciar</button>
+                <button class="btn-restart" onclick="restartGame()">Reiniciar</button>
             </div>
         </section>
         <section class="draw" style="display: none;" id="4">
             <div class="draw-info">
                 <h2>Empate!</h2>
-                <button onclick="restartGame()">Reiniciar</button>
+                <button class="btn-restart" onclick="restartGame()">Reiniciar</button>
             </div>
         </section>
     </body>

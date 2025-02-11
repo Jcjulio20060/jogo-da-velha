@@ -6,10 +6,11 @@ let gameboard = [
     [null, null, null]
 ];
 
-function startGame(){
+// Função para iniciar o jogo
+function startGame() {
     let player1 = document.getElementById('player1').value;
     let player2 = document.getElementById('player2').value;
-    if(player1 == '' || player2 == ''){
+    if (player1 == '' || player2 == '') {
         alert('Players name is required');
         return;
     }
@@ -21,15 +22,17 @@ function startGame(){
     mudaJanela(1, 2);
 }
 
-function choosePlayer(){
+// Função para escolher o jogador inicial
+function choosePlayer() {
     let choice = Math.floor(Math.random() * 2);
     currentPlayer = choice;
     document.getElementById('currentPlayer').innerHTML = players[currentPlayer];
     trocaPosicao();
 }
 
-function trocaPosicao(){
-    if(players[currentPlayer] == players[0]){
+// Função para trocar a posição dos jogadores
+function trocaPosicao() {
+    if (players[currentPlayer] == players[0]) {
         return;
     } else {
         let atualPlayer = players[0];
@@ -39,25 +42,25 @@ function trocaPosicao(){
     }
 }
 
-function handleClick(cell){
+// Função para lidar com o clique nas células do tabuleiro
+function handleClick(cell) {
     let row;
     let col;
-    if(cell < 3){
+    if (cell < 3) {
         row = 0;
         col = cell;
-    } else if(cell < 6){
+    } else if (cell < 6) {
         row = 1;
         col = cell - 3;
     } else {
         row = 2;
         col = cell - 6;
     }
-    if(gameboard[row][col] !== null){
+    if (gameboard[row][col] !== null) {
         alert('This cell is already taken');
-    }
-    else {
+    } else {
         let cellElement = document.getElementById('cell-' + cell);
-        if(currentPlayer === 0){
+        if (currentPlayer === 0) {
             gameboard[row][col] = 0;
             cellElement.innerHTML = '<span class="x-1"></span><span class="x-2"></span>';
         } else {
@@ -67,13 +70,13 @@ function handleClick(cell){
         let result1 = verificaLinha();
         let result2 = false;
         let result3 = false;
-        if(!result1){
+        if (!result1) {
             result2 = verificaColuna();
-            if(!result2){
+            if (!result2) {
                 result3 = vericicaTransversaç();
             }
         }
-        if(result1 || result2 || result3){
+        if (result1 || result2 || result3) {
             finalizaGame();
         } else if (empate()) {
             mudaJanela(2, 4);
@@ -83,51 +86,53 @@ function handleClick(cell){
     }
 }
 
-function trocaPlayer(){
-    if(currentPlayer === 0){
-        currentPlayer = 1;
-    } else {
-        currentPlayer = 0;
-    }
+// Função para trocar o jogador atual
+function trocaPlayer() {
+    currentPlayer = currentPlayer === 0 ? 1 : 0;
     document.getElementById('currentPlayer').innerHTML = players[currentPlayer];
 }
 
-function verificaLinha(){
-    for(let i = 0; i < 3; i++){
-        if(gameboard[i][0] !== null && gameboard[i][0] === gameboard[i][1] && gameboard[i][0] === gameboard[i][2]){
+// Função para verificar se há uma linha vencedora
+function verificaLinha() {
+    for (let i = 0; i < 3; i++) {
+        if (gameboard[i][0] !== null && gameboard[i][0] === gameboard[i][1] && gameboard[i][0] === gameboard[i][2]) {
             return true;
         }
     }
     return false;
 }
 
-function verificaColuna(){
-    for(let i = 0; i < 3; i++){
-        if(gameboard[0][i] !== null && gameboard[0][i] === gameboard[1][i] && gameboard[0][i] === gameboard[2][i]){
+// Função para verificar se há uma coluna vencedora
+function verificaColuna() {
+    for (let i = 0; i < 3; i++) {
+        if (gameboard[0][i] !== null && gameboard[0][i] === gameboard[1][i] && gameboard[0][i] === gameboard[2][i]) {
             return true;
         }
     }
     return false;
 }
 
-function vericicaTransversaç(){
-    if(gameboard[0][0] !== null && gameboard[0][0] === gameboard[1][1] && gameboard[0][0] === gameboard[2][2]){
+// Função para verificar se há uma diagonal vencedora
+function vericicaTransversaç() {
+    if (gameboard[0][0] !== null && gameboard[0][0] === gameboard[1][1] && gameboard[0][0] === gameboard[2][2]) {
         return true;
     }
-    if(gameboard[0][2] !== null && gameboard[0][2] === gameboard[1][1] && gameboard[0][2] === gameboard[2][0]){
+    if (gameboard[0][2] !== null && gameboard[0][2] === gameboard[1][1] && gameboard[0][2] === gameboard[2][0]) {
         return true;
     }
     return false;
 }
 
-function finalizaGame(){
+// Função para finalizar o jogo
+function finalizaGame() {
     let winner = players[currentPlayer];
     let winner1 = document.getElementById('winner');
     winner1.innerHTML = winner;
     mudaJanela(2, 3);
 }
 
-function restartGame(){
+// Função para reiniciar o jogo
+function restartGame() {
     gameboard = [
         [null, null, null],
         [null, null, null],
@@ -135,7 +140,7 @@ function restartGame(){
     ];
     currentPlayer = 0;
     document.getElementById('currentPlayer').innerHTML = players[currentPlayer];
-    for(let i = 0; i < 9; i++){
+    for (let i = 0; i < 9; i++) {
         document.getElementById('cell-' + i).innerHTML = '';
     }
     document.getElementById('player1').value = players[0];
@@ -143,11 +148,13 @@ function restartGame(){
     mudaJanela(3, 1);
 }
 
-function mudaJanela(one, two){
+// Função para mudar de janela
+function mudaJanela(one, two) {
     document.getElementById(one).style.display = 'none';
     document.getElementById(two).style.display = 'block';
 }
 
+// Função para verificar se houve empate
 function empate() {
     for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 3; j++) {
